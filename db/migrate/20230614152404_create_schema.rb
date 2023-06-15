@@ -7,14 +7,14 @@ class CreateSchema < ActiveRecord::Migration[7.0]
       t.text :text
       t.timestamps null: false
     end
-    
+
     create_table :likes do |t|
       t.bigint :user_id, null: false
       t.bigint :post_id, null: false
       t.datetime :created_at, null: false
       t.datetime :updated_at, null: false
     end
-    
+
     create_table :posts do |t|
       t.bigint :author_id, null: false
       t.string :title
@@ -24,7 +24,7 @@ class CreateSchema < ActiveRecord::Migration[7.0]
       t.datetime :created_at, null: false
       t.datetime :updated_at, null: false
     end
-    
+
     create_table :users do |t|
       t.string :name
       t.string :photo
@@ -33,12 +33,11 @@ class CreateSchema < ActiveRecord::Migration[7.0]
       t.datetime :created_at, null: false
       t.datetime :updated_at, null: false
     end
-    
+
     add_foreign_key :comments, :posts
     add_foreign_key :comments, :users
     add_foreign_key :likes, :posts
     add_foreign_key :likes, :users
     add_foreign_key :posts, :users, column: :author_id
-    
   end
 end
